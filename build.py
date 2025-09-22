@@ -1,4 +1,4 @@
-import scripts.cache as cache
+from py import cache
 
 print('===== SITE BUILDER =====')
 print('Caching data files:')
