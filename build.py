@@ -20,3 +20,8 @@ if update or '-nocache' in sys.argv:
     movesBase = parser.fill_move_text(movesBase)
     print(f'- {cache.mod} moves')
     movesMod, movesListMod = parser.build_moves(cache.mod, movesBase)
+    print(f'- {cache.mod} abilities')
+    abilityListMod = parser.get_ability_list(dexMod)
+    abilityBase = parser.build_abilities(abilityListMod)
+    abilityMod = parser.build_abilities(abilityListMod, cache.mod, abilityBase)
+    print('-----')

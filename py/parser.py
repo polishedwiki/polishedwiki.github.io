@@ -41,15 +41,16 @@ def build_dex(mod='base', dexOverride=False):
             types = types_s.split(',')
         elif in_mon and line.find('abilities:') > -1: # abilities
             abil_s = line[line.find('{')+1:line.find('}')]
-            abil_s = abil_s.replace('0:', '"0":').replace('1:', '"1":').replace('H:', '"H":').replace('S:', '"S":')
-            abil_s = abil_s.split(',')
-            abil_s = '{' + ','.join(abil_s) + '}'
-            abil = json.loads(abil_s)
+            abil_s = abil_s.replace('0:', '').replace('1:', '').replace('H:', '').replace('S:', '')
+            abil_s = abil_s.replace('"', '').replace(' ', '').replace('-', '').lower()
+            abil = abil_s.split(',')
         elif in_mon and line.find('prevo:') > -1: # pre-evolutions
             prevo = line[line.find('"')+1:]
             prevo = prevo[:prevo.find('"')]
+            prevo = prevo.lower()
         elif in_mon and line.find('evos:') > -1:
             evos_s = line[line.find('[')+1:line.find(']')].replace(' ', '').replace('"', '')
+            evos_s = evos_s.lower()
             evos = evos_s.split(',')
         elif in_mon and line.find('isCosmeticForme:') > -1: # special for polished formes
             is_cosmetic = True
@@ -211,3 +212,39 @@ def fill_move_text(moves):
             slice_data = slice_data[:slice_data.find('"')]
             moves[move]['desc'] = slice_data
     return moves
+
+def build_abilities(abilitylist, mod='base', abilityOverride=False):
+    data_file = open(f'_cache/{mod}/{'text-abilities' if mod == 'base' else 'abilities'}.ts')
+    ts_data = data_file.read()
+    data_file.close()
+    # parse abilities
+    abilities = {}
+    if abilityOverride:
+        abilities = abilityOverride
+    for a in abilitylist['abilities']:
+        if ts_data.find(a+':') > -1:
+            if a not in abilities:
+                abilities[a] = {}
+            slice_data_str = ts_data[ts_data.find(a+':'):]
+            if slice_data_str.find('name:') > -1:
+                slice_data = slice_data_str[slice_data_str.find('name:'):]
+                slice_data = slice_data[slice_data.find('"')+1:]
+                slice_data = slice_data[:slice_data.find('"')]
+                abilities[a]['name'] = slice_data
+            if slice_data_str.find('shortDesc:') > -1:
+                slice_data = slice_data_str[slice_data_str.find('shortDesc:'):]
+                slice_data = slice_data[slice_data.find('"')+1:]
+                slice_data = slice_data[:slice_data.find('"')]
+                abilities[a]['desc'] = slice_data
+    return abilities
+
+def get_ability_list(dex):
+    a_list = []
+    for mon, data in dex.items():
+        if 'abilities' in data:
+            a_list += data['abilities']
+    a_list = list(dict.fromkeys(a_list))
+    abilitylist = {
+        'abilities': a_list
+    }
+    return abilitylist
