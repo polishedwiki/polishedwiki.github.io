@@ -29,6 +29,8 @@ def build_index(dex, ability, icons):
         for a in data['abilities']:
             abilityNames.append(ability[a]['name'])
         buf += f'</div><span id="dex-abilities"><h6>Abilities</h6><br>{' / '.join(abilityNames)}</span>'
+        for stat in ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']:
+            buf += f'<div class="dex-bst"><h6>{stat}</h6><br>{data['bst'][stat.lower()]}</div>'
         buf += '</a>'
     buf += "</div>"
     html = html.replace(__comment_tag('PAGE_BODY'), buf)

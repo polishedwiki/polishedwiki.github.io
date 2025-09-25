@@ -57,6 +57,13 @@ h1, h2 {
     #dex-abilities {
         display: inline-block;
         vertical-align: -25%;
+        min-width: 35%;
+    }
+    .dex-bst {
+        display: inline-block;
+        vertical-align: -25%;
+        text-align: center;
+        min-width: 3%;
     }
     h6 {
         display: inline-block;
