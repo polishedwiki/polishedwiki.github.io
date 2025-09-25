@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, unicodedata
 
 # config vars
 site_title = 'Polished Wiki'
@@ -11,27 +11,29 @@ def build_header():
     f.close()
     return _head
 
-def build_index(dex):
+def build_index(dex, icons):
     print('- index')
     f = open('pages/index.html')
     html = f.read()
     f.close()
+    # parse mon list
+    buf = '<div class="link-head"><h2 id="left">Pokémon</h2><h2 id="right">Tier</h2></div>'
+    buf += '<div class="link-list" align="center">'
+    for mon, data in dex.items():
+        nameUTF = data['name'].encode().decode('unicode-escape')
+        buf += f'<a href="dex/{mon}"><img id="dex-icon" src="{icons[mon]}"><span id="dex-name">{nameUTF}</span></a>'
+    buf += "</div>"
+    html = html.replace(__comment_tag('PAGE_BODY'), buf)
     # insert headers
     html = __insert_header(html)
     html = __insert_title(html)
     html = html.replace('SITE_INDEX', '')
-    # parse mon list
-    buf = '<div class="link-head"><h2 id="left">Pokemon</h2><h2 id="right">Tier</h2></div>'
-    buf += '<div class="link-list" align="center">'
-    for mon, data in dex.items():
-        buf += f'<a href="dex/{mon}"><h4>{data['name']}</h4></a>'
-    buf += "</div>"
-    html = html.replace(__comment_tag('PAGE_BODY'), buf)
     __save(html, 'index.html')
 
 def copy_assets():
     print('- assets')
     shutil.copytree('pages/style', '_site/style', dirs_exist_ok=True)
+    shutil.copytree('pages/assets', '_site/assets', dirs_exist_ok=True)
 
 
 def __comment_tag(n):
@@ -48,6 +50,6 @@ def __insert_title(html):
 def __save(data, n, path=''):
     if not os.path.isdir('_site'):
         os.mkdir('_site')
-    html = open(f'_site/{path}/{n}', 'w')
+    html = open(f'_site/{path}/{n}', 'w', encoding='utf-8')
     html.write(data)
     html.close()

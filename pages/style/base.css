@@ -38,6 +38,18 @@ h1, h2 {
 }
 
 .link-list {
+    #dex-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 60px;
+        height: 45px;
+        margin-left: -15px;
+        margin-right: 5px;
+    }
+    #dex-name {
+        display: inline-block;
+        vertical-align: -25%;
+    }
     a {
         position:relative;
         display: block;
