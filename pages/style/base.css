@@ -69,6 +69,10 @@ h1, h2 {
         min-width: 3%;
         max-width: 3%;
     }
+    #dex-tier {
+        float: right;
+        vertical-align: middle;
+    }
     h6 {
         display: inline-block;
         margin: 0;
@@ -102,7 +106,7 @@ h1, h2 {
     }
     a:hover {
         #dex-name {
-            color: #7b82a0;
+            color: #666c85;
         }
     }
 }

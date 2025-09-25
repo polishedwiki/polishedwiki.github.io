@@ -250,3 +250,24 @@ def get_ability_list(dex):
         'abilities': a_list
     }
     return abilitylist
+
+def build_format_tiers(dex, mod='base', tierOverride=False):
+    data_file = open(f'_cache/{mod}/formats-data.ts')
+    ts_data = data_file.read()
+    data_file.close()
+    # parse formats
+    tiers = {}
+    tierList = []
+    if tierOverride:
+        tiers = tierOverride
+    for name, data in dex.items():
+        if ts_data.find(name+':') > -1:
+            slice_data_str = ts_data[ts_data.find(name+':'):]
+            if slice_data_str.find('tier:') > -1:
+                slice_data = slice_data_str[slice_data_str.find('tier:'):]
+                slice_data = slice_data[slice_data.find('"')+1:]
+                slice_data = slice_data[:slice_data.find('"')]
+                tiers[name] = slice_data
+                if slice_data not in tierList:
+                    tierList.append(slice_data)
+    return tiers, tierList

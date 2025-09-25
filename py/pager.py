@@ -1,4 +1,4 @@
-import os, shutil, unicodedata
+import os, shutil
 
 # config vars
 site_title = 'Polished Wiki'
@@ -11,7 +11,7 @@ def build_header():
     f.close()
     return _head
 
-def build_index(dex, ability, icons):
+def build_index(dex, ability, tiers, icons):
     print('- index')
     f = open('pages/index.html')
     html = f.read()
@@ -31,7 +31,7 @@ def build_index(dex, ability, icons):
         buf += f'</div><span id="dex-abilities"><h6>Abilities</h6><br>{' / '.join(abilityNames)}</span>'
         for stat in ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']:
             buf += f'<div class="dex-bst"><h6>{stat}</h6><br>{data['bst'][stat.lower()]}</div>'
-        buf += '</a>'
+        buf += f'<h3 id="dex-tier">{tiers[mon]}</h3></a>'
     buf += "</div>"
     html = html.replace(__comment_tag('PAGE_BODY'), buf)
     # insert headers

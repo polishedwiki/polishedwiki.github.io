@@ -4,6 +4,7 @@ import sys, json
 dexMod = False
 movesMod = False
 abilityMod = False
+tiersMod = False
 iconURLs = False
 
 print('===== SITE BUILDER =====')
@@ -29,16 +30,19 @@ if update or '-nocache' in sys.argv:
     abilityListMod = parser.get_ability_list(dexMod)
     abilityBase = parser.build_abilities(abilityListMod)
     abilityMod = parser.build_abilities(abilityListMod, cache.mod, abilityBase)
+    print(f'- {cache.mod} tiers')
+    tiersBase, tierListBase = parser.build_format_tiers(dexMod)
+    tiersMod, tierListMod = parser.build_format_tiers(dexMod, cache.mod, tiersBase)
     print(f'- dex icons', end='\r')
     iconURLs = cache.icons(dexMod)
     print('- saving cache')
-    for name, data in [['dexMod', dexMod], ['movesMod', movesMod], ['abilityMod', abilityMod], ['iconURLs', iconURLs]]:
+    for name, data in [['dexMod', dexMod], ['movesMod', movesMod], ['abilityMod', abilityMod], ['tiersMod', tiersMod], ['iconURLs', iconURLs]]:
         f = open(f'_cache/{name}.json', 'w')
         f.write(json.dumps(data))
         f.close()
 else:
     print('Loading cache:')
-    for name in ['dexMod', 'movesMod', 'abilityMod', 'iconURLs']:
+    for name in ['dexMod', 'movesMod', 'abilityMod', 'tiersMod', 'iconURLs']:
         print(f'- {name}')
         f = open(f'_cache/{name}.json')
         fdata = f.read()
@@ -49,10 +53,12 @@ else:
             movesMod = json.loads(fdata)
         elif name == 'abilityMod':
             abilityMod = json.loads(fdata)
+        elif name == 'tiersMod':
+            tiersMod = json.loads(fdata)
         elif name == 'iconURLs':
             iconURLs = json.loads(fdata)
 print('-----\nPaginating:')
 pager.__header_data = pager.build_header()
-pager.build_index(dexMod, abilityMod, iconURLs)
+pager.build_index(dexMod, abilityMod, tiersMod, iconURLs)
 pager.copy_assets()
 print('===== FINISHED =====')
