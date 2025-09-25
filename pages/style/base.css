@@ -24,31 +24,34 @@ h1, h2 {
     text-decoration: none;
 }
 
-.link-head {
+.dex-head {
     display: flex;
     justify-content: space-between;
-    #left {
-        padding-left: 7.5%;
-        text-align: left;
+    #title {
+        margin-left: 7%;
     }
-    #right {
-        padding-right: 7.5%;
-        text-align: right;
+    #tier {
+        margin-right: 7%;
     }
 }
 
-.link-list {
+.dex-list {
     #dex-icon {
         display: inline-block;
         vertical-align: middle;
-        width: 60px;
-        height: 45px;
         margin-left: -15px;
-        margin-right: 5px;
     }
     #dex-name {
         display: inline-block;
         vertical-align: -25%;
+        min-width: 13%;
+    }
+    .dex-type {
+        display: inline-block;
+        vertical-align: -30%;
+    }
+    .dex-type:last-of-type {
+        padding-right: 5%;
     }
     a {
         position:relative;
@@ -76,6 +79,8 @@ h1, h2 {
         text-decoration: none;
     }
     a:hover {
-        color: #7b82a0;
+        #dex-name {
+            color: #7b82a0;
+        }
     }
 }

@@ -17,11 +17,14 @@ def build_index(dex, icons):
     html = f.read()
     f.close()
     # parse mon list
-    buf = '<div class="link-head"><h2 id="left">Pokémon</h2><h2 id="right">Tier</h2></div>'
-    buf += '<div class="link-list" align="center">'
+    buf = '<div class="dex-head"><h2 id="title">Pokémon</h2><h2 id="tier">Tier</h2></div>'
+    buf += '<div class="dex-list" align="center">'
     for mon, data in dex.items():
         nameUTF = data['name'].encode().decode('unicode-escape')
-        buf += f'<a href="dex/{mon}"><img id="dex-icon" src="{icons[mon]}"><span id="dex-name">{nameUTF}</span></a>'
+        buf += f'<a href="dex/{mon}"><img id="dex-icon" src="{icons[mon]}"><span id="dex-name">{nameUTF}</span>'
+        for type in data['types']:
+            buf += f'<img class="dex-type" src="https://play.pokemonshowdown.com/sprites/types/{type}.png">'
+        buf += '</a>'
     buf += "</div>"
     html = html.replace(__comment_tag('PAGE_BODY'), buf)
     # insert headers
