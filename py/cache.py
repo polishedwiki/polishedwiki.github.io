@@ -65,7 +65,7 @@ def sprites(dex):
         counter += 1
         print(f'- dex sprites {counter}/{len(dex)}', end='\r')
         try:
-            url = __data_url(f'sprites/front/{name}.png', mod)
+            url = __data_url(f'sprites/front/{__showdown_mon_url_format(name, False)}.png', mod)
             urllib.request.urlopen(url)
         except:
             url = __smogon_sprite_url(name)
@@ -73,31 +73,30 @@ def sprites(dex):
     print(f'- dex sprites {counter}/{len(dex)}')
     return urls
 
-def __smogon_icon_url(mon):
+def __showdown_mon_url_format(mon, isIcon=True):
     # specific
-    if 'mrmime' in mon:
-        mon = mon.replace('mrmime', 'mr-mime')
-    elif 'tauros' in mon and 'combat' in mon:
-        mon = mon.replace('combat', '-combat')
-    elif 'tauros' in mon and 'blaze' in mon:
-        mon = mon.replace('blaze', '-blaze')
-    elif 'tauros' in mon and 'aqua' in mon:
-        mon = mon.replace('aqua', '-aqua')
-    elif 'aqua' in mon:
-        mon 
-    elif mon == 'nidoranf':
-        mon = 'nidoran-f'
-    elif mon == 'nidoranm':
-        mon = 'nidoran-m'
-    elif mon == 'hooh':
-        mon = 'ho-oh'
-    elif mon == 'mimejr':
-        mon = 'mime-jr'
-    elif mon == 'porygonz':
-        mon = 'porygon-z'
-    elif mon == 'mrrime':
-        mon = 'mr-rime'
-    elif mon == 'ursalunabloodmoon':
+    if isIcon:
+        if 'mrmime' in mon:
+            mon = mon.replace('mrmime', 'mr-mime')
+        elif 'tauros' in mon and 'combat' in mon:
+            mon = mon.replace('combat', '-combat')
+        elif 'tauros' in mon and 'blaze' in mon:
+            mon = mon.replace('blaze', '-blaze')
+        elif 'tauros' in mon and 'aqua' in mon:
+            mon = mon.replace('aqua', '-aqua')
+        elif mon == 'nidoranf':
+            mon = 'nidoran-f'
+        elif mon == 'nidoranm':
+            mon = 'nidoran-m'
+        elif mon == 'hooh':
+            mon = 'ho-oh'
+        elif mon == 'mimejr':
+            mon = 'mime-jr'
+        elif mon == 'porygonz':
+            mon = 'porygon-z'
+        elif mon == 'mrrime':
+            mon = 'mr-rime'
+    if mon == 'ursalunabloodmoon':
         mon = 'ursaluna-bloodmoon'
     # regional
     if 'alola' in mon:
@@ -108,9 +107,14 @@ def __smogon_icon_url(mon):
         mon = mon.replace('hisui', '-hisui')
     elif 'paldea' in mon:
         mon = mon.replace('paldea', '-paldea')
+    return mon
+
+def __smogon_icon_url(mon):
+    mon = __showdown_mon_url_format(mon)
     return f'https://www.smogon.com/forums/media/minisprites/{mon}.png'
 
 def __smogon_sprite_url(mon):
+    mon = __showdown_mon_url_format(mon, False)
     return f'https://play.pokemonshowdown.com/sprites/gen5/{mon}.png'
 
 def __data_url(file, mod=False):
