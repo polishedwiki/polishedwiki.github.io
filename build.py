@@ -36,6 +36,12 @@ if update or '-nocache' in sys.argv:
         f = open(f'_cache/{name}.json', 'w')
         f.write(json.dumps(data))
         f.close()
+    cache.dexMod = dexMod
+    cache.movesMod = movesMod
+    cache.abilityMod = abilityMod
+    cache.tiersMod = tiersMod
+    cache.iconURLs = iconURLs
+    cache.spriteURLs = spriteURLs
 else:
     print('Loading cache:')
     for name in ['dexMod', 'movesMod', 'abilityMod', 'tiersMod', 'iconURLs', 'spriteURLs']:
