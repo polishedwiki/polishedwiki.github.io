@@ -59,6 +59,7 @@ else:
             iconURLs = json.loads(fdata)
 print('-----\nPaginating:')
 pager.__header_data = pager.build_header()
+pager.build_dex(dexMod, tiersMod)
 pager.build_index(dexMod, abilityMod, tiersMod, iconURLs)
 pager.copy_assets()
 print('===== FINISHED =====')

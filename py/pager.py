@@ -11,6 +11,11 @@ def build_header():
     f.close()
     return _head
 
+def build_dex(dex, tiers):
+    print ('- dex')
+    for mon, data in dex.items():
+        __build_dex_page(mon, data, tiers[mon])
+
 def build_index(dex, ability, tiers, icons):
     print('- index')
     f = open('pages/index.html')
@@ -45,6 +50,46 @@ def copy_assets():
     shutil.copytree('pages/style', '_site/style', dirs_exist_ok=True)
     shutil.copytree('pages/assets', '_site/assets', dirs_exist_ok=True)
 
+
+def __build_dex_page(mon, data, tier):
+    f = open('pages/dex.html')
+    html_temp = f.read()
+    f.close()
+    if not os.path.isdir('_site/dex'):
+        os.mkdir('_site/dex')
+    if not os.path.isdir(f'_site/dex/{mon}'):
+        os.mkdir(f'_site/dex/{mon}')
+    # name & mon display
+    html = html_temp.replace('MON_NAME', data['name'])
+    html = html.replace('MON_SPRITE', f'https://raw.githubusercontent.com/CCC200/DH2/refs/heads/main/data/mods/polishedcrystal/sprites/front/{mon}.png')
+    # types
+    buf = ''
+    typeLen = len(data['types'])
+    for i in range(typeLen):
+        id = ''
+        if typeLen == 1:
+            id = 'only-type'
+        elif i == 0:
+            id ='first-type'
+        buf += f'<img class="mon-type" id="{id}" src="https://play.pokemonshowdown.com/sprites/types/{data['types'][i]}.png">'
+    html = html.replace(__comment_tag('MON_TYPE'), buf)
+    html = html.replace('MON_TIER', tier)
+    # bst
+    buf = ''
+    for stat in ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']:
+        statNum = data['bst'][stat.lower()]
+        barDisplay = round(statNum * (100/255 * 0.8))
+        if barDisplay < 1:
+            barDisplay = 1
+        elif barDisplay > 80:
+            barDisplay = 80
+        buf += f'<div class="stat">{stat}: {statNum}</div><div class="stat-bar" style="width: {barDisplay}%;"></div><br>'
+    html = html.replace(__comment_tag('MON_STATS'), buf)
+    # insert headers
+    html = __insert_header(html)
+    html = __insert_title(html)
+    html = html.replace('SITE_INDEX', '../..')
+    __save(html, 'index.html', f'dex/{mon}')
 
 def __comment_tag(n):
     return f'<!-- {n} -->'

@@ -1,0 +1,52 @@
+#mon-name {
+    text-align: center;
+}
+.mon-header {
+    .header-body {
+        position:relative;
+        display: inline-block;
+        padding: 1em;
+        padding-top: 0.25em;
+        border: silver solid 1px;
+        border-top-width: 1px;
+        background: white;
+        font: bold 110% sans-serif;
+        text-align: left;
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+        user-select: none;
+    }
+    #mon-sprite {
+        display: block;
+        width: 192px;
+        height: 192px;
+        margin-top: -1em;
+        margin-bottom: -1em;
+            
+    }
+    .mon-type {
+        display: inline-block;
+        width: 48px;
+        height: 21px;
+    }
+    #mon-tier {
+        display: block;
+        font-size: 115%;
+        margin-top: 0.5em;
+        margin-bottom: -0.1em;
+    }
+    .stat {
+        display: inline-block;
+        min-width: 15%;
+        max-width: 15%;
+        text-align: center;
+        margin-top: 0.65em;
+    }
+    .stat-bar {
+        display: inline-block;
+        vertical-align: -10%;
+        background-color: dodgerblue;
+        height: 1em;
+        margin-left: 0.5em;
+    }
+}
