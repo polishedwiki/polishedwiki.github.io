@@ -25,7 +25,7 @@ def build_index(dex, ability, tiers, icons):
     buf = '<div class="dex-head"><h2 id="title">Pokémon</h2><h2 id="tier">Tier</h2></div>'
     buf += '<div class="dex-list" align="center">'
     for mon, data in dex.items():
-        nameUTF = data['name'].encode().decode('unicode-escape')
+        nameUTF = __mon_name_format(data['name'])
         buf += f'<a href="dex/{mon}"><img id="dex-icon" src="{icons[mon]}"><span id="dex-name">{nameUTF}</span>'
         buf += '<div class="dex-type"><h6 id="type-title">Type</h6><br>'
         for type in data['types']:
@@ -60,7 +60,7 @@ def __build_dex_page(mon, data, tier, sprite):
     if not os.path.isdir(f'_site/dex/{mon}'):
         os.mkdir(f'_site/dex/{mon}')
     # name & mon display
-    html = html_temp.replace('MON_NAME', data['name'])
+    html = html_temp.replace('MON_NAME', __mon_name_format(data['name']))
     html = html.replace('MON_SPRITE', sprite)
     # types
     buf = ''
@@ -104,6 +104,9 @@ def __insert_title(html):
 
 def __type_img(t):
     return f'https://play.pokemonshowdown.com/sprites/types/{t}.png'
+
+def __mon_name_format(name):
+    return name.encode().decode('unicode-escape')
 
 def __save(data, n, path=''):
     if not os.path.isdir('_site'):
