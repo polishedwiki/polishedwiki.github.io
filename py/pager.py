@@ -178,7 +178,7 @@ def __insert_title(html):
     return html
 
 def __insert_dex_evo(mon):
-    return f'<img id="evo-icon" src="{cache.iconURLs[mon]}"> <span id="evo-name">{cache.dexMod[mon]['name']}</span>'
+    return f'<img id="evo-icon" src="{cache.iconURLs[mon]}"> <span id="evo-name">{__mon_name_format(cache.dexMod[mon]['name'])}</span>'
 
 def __type_img(t):
     return f'https://play.pokemonshowdown.com/sprites/types/{t}.png'
