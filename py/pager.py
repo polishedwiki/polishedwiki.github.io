@@ -107,8 +107,13 @@ def __build_dex_page(mon):
                         buf += ' &nbsp;<i>or</i>&nbsp; '
                     buf += f'<a href="../{data['evos'][i]}">{__insert_dex_evo(data['evos'][i])}</a>'
                     if 'evos' in cache.dexMod[data['evos'][i]]:
-                        nextEvo = cache.dexMod[data['evos'][i]]['evos'][0]
-                        buf += f' &#8594; <a href="../{nextEvo}">{__insert_dex_evo(nextEvo)}</a>'
+                        buf += ' &#8594; '
+                        nextEvoLen = len(cache.dexMod[data['evos'][i]]['evos'])
+                        for j in range(nextEvoLen):
+                            if j > 0:
+                                buf += ' &nbsp;<i>or</i>&nbsp; '
+                            nextEvo = cache.dexMod[data['evos'][i]]['evos'][j]
+                            buf += f'<a href="../{nextEvo}">{__insert_dex_evo(nextEvo)}</a>'
         buf += '</div>'
     else:
         buf = ''
