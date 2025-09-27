@@ -104,7 +104,7 @@ def __build_dex_page(mon):
             for i in range(evoLen):
                 if data['evos'][i] in cache.dexMod:
                     if i > 0:
-                        buf += ' <i>or</i> '
+                        buf += ' &nbsp;<i>or</i> '
                     buf += f'<a href="../{data['evos'][i]}">{__insert_dex_evo(data['evos'][i])}</a>'
         buf += '</div>'
     else:
@@ -112,11 +112,21 @@ def __build_dex_page(mon):
     html = html.replace(__comment_tag('MON_EVOLUTION'), buf)
     # overview (TODO: THIS IS PLACEHOLDER)
     html = html.replace(__comment_tag('MON_OVERVIEW'), 'No analysis is available for this species.')
+    # abilities
+    html = html.replace(__comment_tag('MON_ABILITY'), __build_ability_list(data['abilities'], '../../'))
     # insert headers
     html = __insert_header(html)
     html = __insert_title(html)
     html = html.replace('SITE_INDEX', '../..')
     __save(html, 'index.html', f'dex/{mon}')
+
+def __build_ability_list(abilities, path=''):
+    buf = '<div class="ability-list" align="center">'
+    for a in abilities:
+        ability = cache.abilityMod[a]
+        buf += f'<a href="{path}ability/{a}" {'id="ability-single"' if len(abilities) == 1 else ''}><span id="ability-name">{ability['name']}</span>{ability['desc']}</a>'
+    buf += '</div>'
+    return buf
 
 def __comment_tag(n):
     return f'<!-- {n} -->'
