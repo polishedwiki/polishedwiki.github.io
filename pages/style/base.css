@@ -117,7 +117,6 @@ h1, h2 {
         display: inline-block;
         min-width: 13%;
         max-width: 13%;
-        vertical-align: middle;
     }
     #ability-desc {
         display: inline-block;
@@ -154,5 +153,63 @@ h1, h2 {
         #ability-name {
             color: #666c85;
         }
+    }
+}
+
+.move-list {
+    #move-name {
+        display: inline-block;
+        vertical-align: middle;
+        min-width: 13%;
+        max-width: 13%;
+    }
+    .move-detail {
+        display: inline-block;
+        vertical-align: -25%;
+        min-width: 5%;
+        max-width: 5%;
+    }
+    #move-desc {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    h6 {
+        display: inline-block;
+        margin: 0;
+        vertical-align: -10%;
+    }
+    a {
+        position:relative;
+        display: block;
+        padding: 1em;
+        padding-top: 0.25em;
+        border: silver solid 1px;
+        border-top-width: 0;
+        background: white;
+        font: bold 100% sans-serif;
+        width: 85%;
+        text-align: left;
+        user-select: none;
+    }
+    a:first-of-type {
+        border-top-width: 1px;
+        border-radius: 0.6em 0.6em 0 0;
+    }
+    a:last-of-type, p {
+        border-radius: 0 0 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+    a:link, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    a:hover {
+        #move-name {
+            color: #666c85;
+        }
+    }
+    #move-single {
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
     }
 }

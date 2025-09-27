@@ -117,6 +117,8 @@ def __build_dex_page(mon):
     html = html.replace(__comment_tag('MON_OVERVIEW'), 'No analysis is available for this species.')
     # abilities
     html = html.replace(__comment_tag('MON_ABILITY'), __build_ability_list(data['abilities'], '../../'))
+    # moves
+    html = html.replace(__comment_tag('MON_MOVES'), __build_move_list(data['learnset'], '../../'))
     # insert headers
     html = __insert_header(html)
     html = __insert_title(html)
@@ -128,6 +130,39 @@ def __build_ability_list(abilities, path=''):
     for a in abilities:
         ability = cache.abilityMod[a]
         buf += f'<a href="{path}ability/{a}" {'id="ability-single"' if len(abilities) == 1 else ''}><span id="ability-name">{ability['name']}</span>{ability['desc']}</a>'
+    buf += '</div>'
+    return buf
+
+def __build_move_list(moves, path=''):
+    buf = '<div class="move-list" align="center">'
+    for m in moves:
+        move = cache.movesMod[m]
+        # name / category / type
+        buf += f'<a href="{path}move/{m}" {'id="move-single"' if len(moves) == 1 else ''}><span id="move-name">{move['name']}</span>'
+        buf += f'<div class="move-detail" align="center"><h6>Category</h6><br><img src="{__category_img(move['category'])}"></div>'
+        buf += f'<div class="move-detail" align="center"><h6>Type</h6><br><img src="{__type_img(move['type'])}"></div>'
+        # bp
+        try:
+            bp = int(move['bp'])
+            if bp < 1:
+                bp = '—'
+        except:
+            bp = '—'
+        buf += f'<div class="move-detail" align="center"><h6>Power</h6><br>{bp}</div>'
+        # accuracy
+        try:
+            acc = int(move['accuracy'])
+            if acc <= 1:
+                acc= '—'
+            else:
+                acc = f'{acc}%'
+        except:
+            acc = '—'
+        buf += f'<div class="move-detail" align="center"><h6>Accuracy</h6><br>{acc}</div>'
+        # pp / desc
+        buf += f'<div class="move-detail" align="center"><h6>PP</h6><br>{move['pp']}</div>'
+        buf += f'<div id="move-desc">{move['desc']}</div>'
+        buf += '</a>'
     buf += '</div>'
     return buf
 
@@ -147,6 +182,9 @@ def __insert_dex_evo(mon):
 
 def __type_img(t):
     return f'https://play.pokemonshowdown.com/sprites/types/{t}.png'
+
+def __category_img(c):
+    return f'https://play.pokemonshowdown.com/sprites/categories/{c}.png'
 
 def __mon_name_format(name):
     return name.encode().decode('unicode-escape')
