@@ -22,6 +22,11 @@ def build_moves():
     for move in cache.searchData['movelist']:
         __build_move_page(move)
 
+def build_abilities():
+    print('- abilities')
+    for ability in cache.searchData['abilitylist']:
+        __build_ability_page(ability)
+
 def build_index():
     print('- index')
     f = open('pages/index.html')
@@ -131,8 +136,8 @@ def __build_move_page(move):
         os.mkdir(f'_site/move/{move}')
     # move
     data = cache.movesMod[move]
-    html = html_temp.replace('MOVE_NAME', data['name'])
-    buf = __build_move_list([move])
+    html = html_temp.replace('MOVE_ABILITY_NAME', data['name'])
+    buf = __build_move_list([move], '../../')
     # mon learnset list
     monsWithMove = []
     for mon in cache.searchData['dexlist']:
@@ -147,6 +152,33 @@ def __build_move_page(move):
     html = __insert_title(html)
     html = html.replace('SITE_INDEX', '../..')
     __save(html, 'index.html', f'move/{move}')
+
+def __build_ability_page(ability):
+    f = open('pages/ability-move.html')
+    html_temp = f.read()
+    f.close()
+    if not os.path.isdir('_site/ability'):
+        os.mkdir('_site/ability')
+    if not os.path.isdir(f'_site/ability/{ability}'):
+        os.mkdir(f'_site/ability/{ability}')
+    # ability
+    data = cache.abilityMod[ability]
+    html = html_temp.replace('MOVE_ABILITY_NAME', data['name'])
+    buf = __build_ability_list([ability], '../../')
+    # mon ability list
+    monsWithAbility = []
+    for mon in cache.searchData['dexlist']:
+        if ability in cache.dexMod[mon]['abilities']:
+            monsWithAbility.append(mon)
+    monsWithAbility.sort()
+    buf += '<h2 id="ability-header">Ability Compatibility</h2>'
+    buf += __build_dex_list(monsWithAbility, '../../')
+    html = html.replace(__comment_tag('PAGE_BODY'), buf)
+    # insert headers
+    html = __insert_header(html)
+    html = __insert_title(html)
+    html = html.replace('SITE_INDEX', '../..')
+    __save(html, 'index.html', f'ability/{ability}')
 
 def __build_ability_list(abilities, path=''):
     buf = '<div class="ability-list" align="center">'
