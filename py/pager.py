@@ -132,33 +132,7 @@ def __build_move_page(move):
     # move
     data = cache.movesMod[move]
     html = html_temp.replace('MOVE_NAME', data['name'])
-    buf = '<div class="move-list" align="center">'
-    # name / category / type
-    buf += f'<a id="move-single"><span id="move-name">{data['name']}</span>'
-    buf += f'<div class="move-detail" align="center"><h6>Category</h6><br><img src="{__category_img(data['category'])}"></div>'
-    buf += f'<div class="move-detail" align="center"><h6>Type</h6><br><img src="{__type_img(data['type'])}"></div>'
-    # bp
-    try:
-        bp = int(data['bp'])
-        if bp < 1:
-            bp = '—'
-    except:
-        bp = '—'
-    buf += f'<div class="move-detail" align="center"><h6>Power</h6><br>{bp}</div>'
-    # accuracy
-    try:
-        acc = int(data['accuracy'])
-        if acc <= 1:
-            acc= '—'
-        else:
-            acc = f'{acc}%'
-    except:
-        acc = '—'
-    buf += f'<div class="move-detail" align="center"><h6>Accuracy</h6><br>{acc}</div>'
-    # pp / desc
-    buf += f'<div class="move-detail" align="center"><h6>PP</h6><br>{data['pp']}</div>'
-    buf += f'<div id="move-desc">{data['desc']}</div>'
-    buf += '</a></div>'
+    buf = __build_move_list([move])
     # mon learnset list
     monsWithMove = []
     for mon in cache.searchData['dexlist']:
