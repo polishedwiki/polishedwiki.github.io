@@ -29,21 +29,7 @@ def build_index():
     f.close()
     # parse mon list
     buf = '<div class="dex-head"><h2 id="title">Pokémon</h2><h2 id="tier">Tier</h2></div>'
-    buf += '<div class="dex-list" align="center">'
-    for mon, data in cache.dexMod.items():
-        nameUTF = __mon_name_format(data['name'])
-        buf += f'<a href="dex/{mon}"><img id="dex-icon" src="{cache.iconURLs[mon]}"><span id="dex-name">{nameUTF}</span>'
-        buf += '<div class="dex-type"><h6 id="type-title">Type</h6><br>'
-        for type in data['types']:
-            buf += f'<img src="{__type_img(type)}">'
-        abilityNames = []
-        for a in data['abilities']:
-            abilityNames.append(cache.abilityMod[a]['name'])
-        buf += f'</div><span id="dex-abilities"><h6>Abilities</h6><br>{' / '.join(abilityNames)}</span>'
-        for stat in ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']:
-            buf += f'<div class="dex-bst"><h6>{stat}</h6><br>{data['bst'][stat.lower()]}</div>'
-        buf += f'<h3 id="dex-tier">{cache.tiersMod[mon]}</h3></a>'
-    buf += "</div>"
+    buf += __build_dex_list(cache.searchData['dexlist'])
     html = html.replace(__comment_tag('PAGE_BODY'), buf)
     # insert headers
     html = __insert_header(html)
