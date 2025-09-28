@@ -76,6 +76,7 @@ else:
 print('-----\nPaginating:')
 pager.__header_data = pager.build_header()
 pager.build_dex()
+pager.build_moves()
 pager.build_index()
 pager.copy_assets()
 print('===== FINISHED =====')

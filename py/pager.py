@@ -17,6 +17,11 @@ def build_dex():
     for mon, data in cache.dexMod.items():
         __build_dex_page(mon)
 
+def build_moves():
+    print('- moves')
+    for move in cache.searchData['movelist']:
+        __build_move_page(move)
+
 def build_index():
     print('- index')
     f = open('pages/index.html')
@@ -130,6 +135,59 @@ def __build_dex_page(mon):
     html = html.replace('SITE_INDEX', '../..')
     __save(html, 'index.html', f'dex/{mon}')
 
+def __build_move_page(move):
+    f = open('pages/ability-move.html')
+    html_temp = f.read()
+    f.close()
+    if not os.path.isdir('_site/move'):
+        os.mkdir('_site/move')
+    if not os.path.isdir(f'_site/move/{move}'):
+        os.mkdir(f'_site/move/{move}')
+    # move
+    data = cache.movesMod[move]
+    html = html_temp.replace('MOVE_NAME', data['name'])
+    buf = '<div class="move-list" align="center">'
+    # name / category / type
+    buf += f'<a id="move-single"><span id="move-name">{data['name']}</span>'
+    buf += f'<div class="move-detail" align="center"><h6>Category</h6><br><img src="{__category_img(data['category'])}"></div>'
+    buf += f'<div class="move-detail" align="center"><h6>Type</h6><br><img src="{__type_img(data['type'])}"></div>'
+    # bp
+    try:
+        bp = int(data['bp'])
+        if bp < 1:
+            bp = '—'
+    except:
+        bp = '—'
+    buf += f'<div class="move-detail" align="center"><h6>Power</h6><br>{bp}</div>'
+    # accuracy
+    try:
+        acc = int(data['accuracy'])
+        if acc <= 1:
+            acc= '—'
+        else:
+            acc = f'{acc}%'
+    except:
+        acc = '—'
+    buf += f'<div class="move-detail" align="center"><h6>Accuracy</h6><br>{acc}</div>'
+    # pp / desc
+    buf += f'<div class="move-detail" align="center"><h6>PP</h6><br>{data['pp']}</div>'
+    buf += f'<div id="move-desc">{data['desc']}</div>'
+    buf += '</a></div>'
+    # mon learnset list
+    monsWithMove = []
+    for mon in cache.searchData['dexlist']:
+        if move in cache.dexMod[mon]['learnset']:
+            monsWithMove.append(mon)
+    monsWithMove.sort()
+    buf += '<h2 id="move-header">Move Compatibility</h2>'
+    buf += __build_dex_list(monsWithMove, '../../')
+    html = html.replace(__comment_tag('PAGE_BODY'), buf)
+    # insert headers
+    html = __insert_header(html)
+    html = __insert_title(html)
+    html = html.replace('SITE_INDEX', '../..')
+    __save(html, 'index.html', f'move/{move}')
+
 def __build_ability_list(abilities, path=''):
     buf = '<div class="ability-list" align="center">'
     for a in abilities:
@@ -168,6 +226,25 @@ def __build_move_list(moves, path=''):
         buf += f'<div class="move-detail" align="center"><h6>PP</h6><br>{move['pp']}</div>'
         buf += f'<div id="move-desc">{move['desc']}</div>'
         buf += '</a>'
+    buf += '</div>'
+    return buf
+
+def __build_dex_list(mons, path=''):
+    buf = '<div class="dex-list" align="center">'
+    for mon in mons:
+        data = cache.dexMod[mon]
+        nameUTF = __mon_name_format(data['name'])
+        buf += f'<a href="{path}dex/{mon}"><img id="dex-icon" src="{cache.iconURLs[mon]}"><span id="dex-name">{nameUTF}</span>'
+        buf += '<div class="dex-type"><h6 id="type-title">Type</h6><br>'
+        for type in data['types']:
+            buf += f'<img src="{__type_img(type)}">'
+        abilityNames = []
+        for a in data['abilities']:
+            abilityNames.append(cache.abilityMod[a]['name'])
+        buf += f'</div><span id="dex-abilities"><h6>Abilities</h6><br>{' / '.join(abilityNames)}</span>'
+        for stat in ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']:
+            buf += f'<div class="dex-bst"><h6>{stat}</h6><br>{data['bst'][stat.lower()]}</div>'
+        buf += f'<h3 id="dex-tier">{cache.tiersMod[mon]}</h3></a>'
     buf += '</div>'
     return buf
 
