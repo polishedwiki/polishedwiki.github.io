@@ -91,9 +91,9 @@ def __build_dex_page(mon):
         buf += f'<div class="stat">{stat}: {statNum}</div><div class="stat-bar" style="width: {barDisplay}%;"></div><br>'
     html = html.replace(__comment_tag('MON_STATS'), buf)
     # evolution
+    prevEvos = []
     if 'prevo' in data or 'evos' in data:
         buf = '<div class="evo-link"><h3>Evolutions</h3>'
-        prevEvos = []
         if 'prevo' in data and data['prevo'] in cache.dexMod:
             prevEvos.append(data['prevo'])
             if 'prevo' in cache.dexMod[data['prevo']]:
@@ -126,7 +126,11 @@ def __build_dex_page(mon):
     # abilities
     html = html.replace(__comment_tag('MON_ABILITY'), __build_ability_list(data['abilities'], '../../'))
     # moves
-    html = html.replace(__comment_tag('MON_MOVES'), __build_move_list(data['learnset'], '../../'))
+    monLearnset = data['learnset']
+    for prevo in prevEvos:
+        monLearnset += cache.dexMod[prevo]['learnset']
+    monLearnset = list(dict.fromkeys(monLearnset))
+    html = html.replace(__comment_tag('MON_MOVES'), __build_move_list(monLearnset, '../../'))
     # insert headers
     html = __insert_header(html)
     html = __insert_title(html)
