@@ -14,7 +14,7 @@ def build_header():
 
 def build_dex():
     print ('- dex')
-    for mon, data in cache.dexMod.items():
+    for mon in cache.searchData['dexlist']:
         __build_dex_page(mon)
 
 def build_moves():
@@ -213,6 +213,7 @@ def __build_tier_page(tier):
     __save(html, 'index.html', f'tier/{nameFlat}')
 
 def __build_ability_list(abilities, path=''):
+    abilities.sort()
     buf = '<div class="ability-list" align="center">'
     for a in abilities:
         ability = cache.abilityMod[a]
@@ -221,6 +222,7 @@ def __build_ability_list(abilities, path=''):
     return buf
 
 def __build_move_list(moves, path=''):
+    moves.sort()
     buf = '<div class="move-list" align="center">'
     for m in moves:
         move = cache.movesMod[m]
@@ -254,6 +256,7 @@ def __build_move_list(moves, path=''):
     return buf
 
 def __build_dex_list(mons, path=''):
+    mons.sort()
     buf = '<div class="dex-list" align="center">'
     for mon in mons:
         data = cache.dexMod[mon]
