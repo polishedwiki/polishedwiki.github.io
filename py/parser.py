@@ -21,7 +21,7 @@ def build_dex(mod='base', dexOverride=False):
     prevo = False
     evos = False
     for line in ts_data:
-        if line.find('export const') > -1 or line.find('\t\t}') > -1:
+        if line.find('export const') > -1 or line.find('\t\t}') > -1 or line.find('//') > -1:
             continue
         elif line.find(': {') > -1 and in_mon == False: # open object
             in_mon = True
@@ -132,7 +132,7 @@ def build_moves(mod='base', moveOverride=False):
     type = False
     desc = False
     for line in ts_data:
-        if line.find('export const') > -1 or line.find('\t\t}') > -1:
+        if line.find('export const') > -1 or line.find('\t\t}') > -1 or line.find('//') > -1:
             continue
         elif line.find(': {') > -1 and in_move == False: # open object
             in_move = True
@@ -218,7 +218,7 @@ def build_items(mod='base', itemOverride=False):
     dname = False
     desc = False
     for line in ts_data:
-        if line.find('export const') > -1 or line.find('\t\t}') > -1:
+        if line.find('export const') > -1 or line.find('\t\t}') > -1 or line.find('//') > -1:
             continue
         elif line.find(': {') > -1 and in_item == False: # open object
             in_item = True
