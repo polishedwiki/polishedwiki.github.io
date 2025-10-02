@@ -22,6 +22,11 @@ def build_moves():
     for move in cache.searchData['movelist']:
         __build_move_page(move)
 
+def build_items():
+    print('- items')
+    for item in cache.searchData['itemlist']:
+        __build_item_page(item)
+
 def build_abilities():
     print('- abilities')
     for ability in cache.searchData['abilitylist']:
@@ -191,6 +196,25 @@ def __build_ability_page(ability):
     html = html.replace('SITE_INDEX', '../..')
     __save(html, 'index.html', f'ability/{ability}')
 
+def __build_item_page(item):
+    f = open('pages/data.html')
+    html_temp = f.read()
+    f.close()
+    if not os.path.isdir('_site/item'):
+        os.mkdir('_site/item')
+    if not os.path.isdir(f'_site/item/{item}'):
+        os.mkdir(f'_site/item/{item}')
+    # item
+    data = cache.itemsMod[item]
+    html = html_temp.replace('DATA_NAME', data['name'])
+    buf = __build_item_list([item], '../../')
+    html = html.replace(__comment_tag('PAGE_BODY'), buf)
+    # insert headers
+    html = __insert_header(html)
+    html = __insert_title(html)
+    html = html.replace('SITE_INDEX', '../..')
+    __save(html, 'index.html', f'item/{item}')
+
 def __build_tier_page(tier):
     f = open('pages/data.html')
     html_temp = f.read()
@@ -222,6 +246,15 @@ def __build_ability_list(abilities, path=''):
     for a in abilities:
         ability = cache.abilityMod[a]
         buf += f'<a href="{path}ability/{a}" {'id="ability-single"' if len(abilities) == 1 else ''}><span id="ability-name">{ability['name']}</span>{ability['desc']}</a>'
+    buf += '</div>'
+    return buf
+
+def __build_item_list(items, path=''):
+    items.sort()
+    buf = '<div class="item-list" align="center">'
+    for i in items:
+        item = cache.itemsMod[i]
+        buf += f'<a href="{path}item/{i}" {'id="item-single"' if len(items) == 1 else ''}><span id="item-name">{item['name']}</span>{item['desc']}</a>'
     buf += '</div>'
     return buf
 

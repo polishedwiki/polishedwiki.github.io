@@ -112,13 +112,13 @@ h1, h2 {
     }
 }
 
-.ability-list {
-    #ability-name {
+.ability-list, .item-list {
+    #ability-name, #item-name {
         display: inline-block;
         min-width: 13%;
         max-width: 13%;
     }
-    #ability-desc {
+    #ability-desc, #item-desc {
         display: inline-block;
     }
     a {
@@ -141,7 +141,7 @@ h1, h2 {
         border-radius: 0 0 0.6em 0.6em;
         box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
     }
-    #ability-single {
+    #ability-single, #item-single {
         border-radius: 0.6em 0.6em 0.6em 0.6em;
         box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
     }

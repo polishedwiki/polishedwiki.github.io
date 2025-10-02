@@ -52,6 +52,7 @@ if update or '-nocache' in sys.argv:
     f.close()
     cache.dexMod = dexMod
     cache.movesMod = movesMod
+    cache.itemsMod = itemsMod
     cache.abilityMod = abilityMod
     cache.tiersMod = tiersMod
     cache.iconURLs = iconURLs
@@ -84,6 +85,7 @@ print('-----\nPaginating:')
 pager.__header_data = pager.build_header()
 pager.build_dex()
 pager.build_moves()
+pager.build_items()
 pager.build_abilities()
 pager.build_tiers()
 pager.build_index()
