@@ -202,6 +202,54 @@ def build_moves(mod='base', moveOverride=False):
             del moves[move]
     return moves, movelist
 
+def build_items(mod='base', itemOverride=False):
+    data_file = open(f'_cache/{mod}/{'text-items' if mod == 'base' else 'items'}.ts')
+    ts_data = data_file.readlines()
+    data_file.close()
+    # parse moves
+    items = {}
+    if itemOverride:
+        items = itemOverride
+    itemlist = {
+        "items": []
+    }
+    in_item = False
+    name = ''
+    dname = False
+    desc = False
+    for line in ts_data:
+        if line.find('export const') > -1 or line.find('\t\t}') > -1:
+            continue
+        elif line.find(': {') > -1 and in_item == False: # open object
+            in_item = True
+            name = line.split(':')[0].strip().replace('"', '')
+        elif in_item and line.find('name:') > -1: # explicit name
+            dname = line[line.find('"')+1:]
+            dname = dname[:dname.find('"')]
+        elif in_item and line.find('shortDesc:') > -1:
+            desc = line[line.find('"')+1:]
+            desc = desc[:desc.find('"')]
+        elif in_item and line.find('\t},') > -1 or in_item and line.find('    },') > -1: # close object
+            in_item = False
+            itemlist['items'].append(name)
+            # enter or override fields
+            if name not in items:
+                items[name] = {}
+            if dname:
+                items[name]['name'] = dname
+                dname = False
+            if desc:
+                items[name]['desc'] = desc
+                desc = False
+    if itemOverride: # clear unused entries
+        to_del = []
+        for item, data in items.items():
+            if item not in itemlist['items']:
+                to_del.append(item)
+        for item in to_del:
+            del items[item]
+    return items, itemlist
+
 def fill_move_text(moves):
     data_file = open('_cache/base/text-moves.ts')
     ts_data = data_file.read()

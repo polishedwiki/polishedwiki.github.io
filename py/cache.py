@@ -7,6 +7,7 @@ mod = 'polishedcrystal'
 # global data
 dexMod = False
 movesMod = False
+itemsMod = False
 abilityMod = False
 tiersMod = False
 iconURLs = False

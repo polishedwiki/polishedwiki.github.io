@@ -20,6 +20,10 @@ if update or '-nocache' in sys.argv:
     movesBase = parser.fill_move_text(movesBase)
     print(f'- {cache.mod} moves')
     movesMod, movesListMod = parser.build_moves(cache.mod, movesBase)
+    print('- base items')
+    itemsBase, itemListBase = parser.build_items(cache.mod)
+    print(f'- {cache.mod} items')
+    itemsMod, itemListMod = parser.build_items(cache.mod, itemsBase)
     print(f'- {cache.mod} abilities')
     abilityListMod = parser.get_ability_list(dexMod)
     abilityBase = parser.build_abilities(abilityListMod)
@@ -32,13 +36,14 @@ if update or '-nocache' in sys.argv:
     print('- dex sprites', end='\r')
     spriteURLs = cache.sprites(dexMod)
     print('- saving cache')
-    for name, data in [['dexMod', dexMod], ['movesMod', movesMod], ['abilityMod', abilityMod], ['tiersMod', tiersMod], ['iconURLs', iconURLs], ['spriteURLs', spriteURLs]]:
+    for name, data in [['dexMod', dexMod], ['movesMod', movesMod], ['itemsMod', itemsMod], ['abilityMod', abilityMod], ['tiersMod', tiersMod], ['iconURLs', iconURLs], ['spriteURLs', spriteURLs]]:
         f = open(f'_cache/{name}.json', 'w')
         f.write(json.dumps(data))
         f.close()
     searchData = {
         "dexlist": dexListMod['mons'],
         "movelist": movesListMod['moves'],
+        "itemlist": itemListMod['items'],
         "abilitylist": abilityListMod['abilities'],
         "tierlist": tierListMod
     }
@@ -54,7 +59,7 @@ if update or '-nocache' in sys.argv:
     cache.searchData = searchData
 else:
     print('Loading cache:')
-    for name in ['dexMod', 'movesMod', 'abilityMod', 'tiersMod', 'iconURLs', 'spriteURLs', 'search-data']:
+    for name in ['dexMod', 'movesMod', 'itemsMod', 'abilityMod', 'tiersMod', 'iconURLs', 'spriteURLs', 'search-data']:
         print(f'- {name}')
         f = open(f'_cache/{name}.json')
         fdata = f.read()
@@ -63,6 +68,8 @@ else:
             cache.dexMod = json.loads(fdata)
         elif name == 'movesMod':
             cache.movesMod = json.loads(fdata)
+        elif name == 'itemsMod':
+            cache.itemsMod = json.loads(fdata)
         elif name == 'abilityMod':
             cache.abilityMod = json.loads(fdata)
         elif name == 'tiersMod':
