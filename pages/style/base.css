@@ -15,6 +15,9 @@ h1, h2 {
 
 
 /* Base divs */
+#site-header {
+    margin-bottom: 1%;
+}
 #site-header h1 {
     text-align: center;
     font-size: 350%;
@@ -35,6 +38,37 @@ h1, h2 {
     }
     a:hover {
         color: #666c85;
+    }
+}
+.search {
+    font-size: 110%;
+    #search-bar {
+        width: 50%;
+        font-size: 110%;
+    }
+    #search-dropdown {
+        display: none;
+        width: 50%;
+        max-height: 50%;
+        overflow: scroll;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        user-select: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        text-align: left;
+    }
+    a {
+        display: block;
+        padding-left: 1%;
+        text-decoration: none;
+    }
+    a:hover {
+        background-color: #c8d0ec;
     }
 }
 

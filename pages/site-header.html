@@ -1,12 +1,17 @@
 <div id="site-header">
-    <a href="SITE_INDEX">
+    <a href="SITE_INDEX" id="site-index">
         <h1>SITE_TITLE</h1>
     </a>
+    <div id="header-buttons">
+        <h2><a href="SITE_INDEX/dex/">Dex</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="SITE_INDEX/tier/">Tiers</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="SITE_INDEX/move/">Moves</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="SITE_INDEX/ability/">Abilities</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="SITE_INDEX/item/">Items</a></h2>
+    </div>
+    <div class="search" id="header-search" align="center">
+        <input id="search-bar" type="text" onkeyup="querySearch()" onblur="hideDropdown()" onfocus="showDropdown()" placeholder="Search for pokémon, moves, items etc...">
+        <div id="search-dropdown"></div>
+    </div>
 </div>
-<div id="header-buttons">
-    <h2><a href="SITE_INDEX/dex/">Dex</a>&nbsp;&middot;&nbsp;</h2>
-    <h2><a href="SITE_INDEX/tier/">Tiers</a>&nbsp;&middot;&nbsp;</h2>
-    <h2><a href="SITE_INDEX/move/">Moves</a>&nbsp;&middot;&nbsp;</h2>
-    <h2><a href="SITE_INDEX/ability/">Abilities</a>&nbsp;&middot;&nbsp;</h2>
-    <h2><a href="SITE_INDEX/item/">Items</a></h2>
-</div>
+<script src="SITE_INDEX/js/search.js"></script>

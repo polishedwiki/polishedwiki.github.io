@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, json
 from py import cache
 
 # config vars
@@ -67,9 +67,39 @@ def build_index():
         html = html.replace('SITE_INDEX', '..')
         __save(html, 'index.html', f'{name}/')
 
+def build_search():
+    print('- search data')
+    searchjs = {
+        "dexlist": [],
+        "abilitylist": [],
+        "itemlist": [],
+        "movelist": [],
+        "tierlist": []
+    }
+    for cat, arr in cache.searchData.items():
+        if cat == 'dexlist':
+            for mon in arr:
+                searchjs['dexlist'].append([mon, __mon_name_format(cache.dexMod[mon]['name'])])
+        elif cat == 'movelist':
+            for move in arr:
+                searchjs['movelist'].append([move, cache.movesMod[move]['name']])
+        elif cat == 'itemlist':
+            for item in arr:
+                searchjs['itemlist'].append([item, cache.itemsMod[item]['name']])
+        elif cat == 'abilitylist':
+            for abil in arr:
+                searchjs['abilitylist'].append([abil, cache.abilityMod[abil]['name']])
+        elif cat == 'tierlist':
+            for tier in arr:
+                searchjs['tierlist'].append(tier)
+    f = open('_site/search-data.json', 'w')
+    f.write(json.dumps(searchjs))
+    f.close()
+
 def copy_assets():
     print('- assets')
     shutil.copytree('pages/style', '_site/style', dirs_exist_ok=True)
+    shutil.copytree('pages/js', '_site/js', dirs_exist_ok=True)
     shutil.copytree('pages/assets', '_site/assets', dirs_exist_ok=True)
 
 
