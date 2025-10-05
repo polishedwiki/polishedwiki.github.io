@@ -67,6 +67,9 @@ function querySearch() {
         var tierMatches = searchData.tierlist.filter(function(x) {
             return x.toLowerCase().startsWith(input);
         });
+        var typeMatches = searchData.typelist.filter(function(x) {
+            return x.toLowerCase().startsWith(input);
+        });
         // insert match links
         if(dexMatches.length > 0) {
             dropdown.appendChild(createSearchHeading("Dex"));
@@ -96,6 +99,12 @@ function querySearch() {
             dropdown.appendChild(createSearchHeading("Tiers"));
             tierMatches.forEach(x => {
                 dropdown.appendChild(createSearchLink(x.toLowerCase(), x, "tier"));
+            });
+        }
+        if(typeMatches.length > 0) {
+            dropdown.appendChild(createSearchHeading("Types"));
+            typeMatches.forEach(x => {
+                dropdown.appendChild(createSearchLink(x.toLowerCase(), x, "type"));
             });
         }
     }

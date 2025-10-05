@@ -79,7 +79,8 @@ def build_search():
         "abilitylist": [],
         "itemlist": [],
         "movelist": [],
-        "tierlist": []
+        "tierlist": [],
+        "typelist": [],
     }
     for cat, arr in cache.searchData.items():
         if cat == 'dexlist':
@@ -94,9 +95,8 @@ def build_search():
         elif cat == 'abilitylist':
             for abil in arr:
                 searchjs['abilitylist'].append([abil, cache.abilityMod[abil]['name']])
-        elif cat == 'tierlist':
-            for tier in arr:
-                searchjs['tierlist'].append(tier)
+        else:
+            searchjs[cat] += arr
     f = open('_site/search-data.json', 'w')
     f.write(json.dumps(searchjs))
     f.close()
