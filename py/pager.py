@@ -37,6 +37,11 @@ def build_tiers():
     for tier in cache.searchData['tierlist']:
         __build_tier_page(tier)
 
+def build_types():
+    print('- types')
+    for type in cache.searchData['typelist']:
+        __build_type_page(type)
+
 def build_index():
     print('- indexes')
     f = open('pages/index.html')
@@ -124,6 +129,8 @@ def __build_index_list(cat, data):
         return __build_ability_list(data, '../')
     elif cat == 'tierlist':
         return __build_tier_list(data, '../')
+    elif cat == 'typelist':
+        return __build_type_list(data, '../')
 
 def __build_dex_page(mon):
     f = open('pages/dex.html')
@@ -307,6 +314,31 @@ def __build_tier_page(tier):
     html = html.replace('SITE_INDEX', '../..')
     __save(html, 'index.html', f'tier/{nameFlat}')
 
+def __build_type_page(type):
+    f = open('pages/data.html')
+    html_temp = f.read()
+    f.close()
+    nameFlat = type.lower()
+    if not os.path.isdir('_site/type'):
+        os.mkdir('_site/type')
+    if not os.path.isdir(f'_site/type/{nameFlat}'):
+        os.mkdir(f'_site/type/{nameFlat}')
+    # type
+    html = html_temp.replace('DATA_NAME', type)
+    monsWithType = []
+    for mon in cache.searchData['dexlist']:
+        if type in cache.dexMod[mon]['types']:
+            monsWithType.append(mon)
+    monsWithType.sort()
+    buf = f'<h2 id="type-header">{type}-type</h2>'
+    buf += __build_dex_list(monsWithType, '../../')
+    html = html.replace(__comment_tag('PAGE_BODY'), buf)
+    # insert headers
+    html = __insert_header(html)
+    html = __insert_title(html)
+    html = html.replace('SITE_INDEX', '../..')
+    __save(html, 'index.html', f'type/{nameFlat}')
+
 def __build_ability_list(abilities, path=''):
     abilities.sort()
     buf = '<div class="ability-list" align="center">'
@@ -364,6 +396,15 @@ def __build_move_list(moves, path=''):
         buf += f'<div class="move-detail" align="center"><h6>PP</h6><br>{move['pp']}</div>'
         buf += f'<div id="move-desc">{move['desc']}</div>'
         buf += '</a>'
+    buf += '</div>'
+    return buf
+
+def __build_type_list(types, path=''):
+    types.sort()
+    buf = '<div class="type-list" align="center">'
+    for t in types:
+        buf += f'<a href="{path}type/{t.lower()}" {'id="type-single"' if len(types) == 1 else ''}><span id="type-name">{t}</span>'
+        buf += f'<div id="type-detail"><img src="{__type_img(t)}"></div></a>'
     buf += '</div>'
     return buf
 

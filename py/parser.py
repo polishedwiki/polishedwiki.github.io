@@ -319,3 +319,11 @@ def build_format_tiers(dex, mod='base', tierOverride=False):
                 if slice_data not in tierList:
                     tierList.append(slice_data)
     return tiers, tierList
+
+def get_type_list(dex):
+    t_list = []
+    for mon, data in dex.items():
+        if 'types' in data:
+            t_list += data['types']
+    t_list = list(dict.fromkeys(t_list))
+    return t_list

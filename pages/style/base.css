@@ -27,7 +27,7 @@ h1, h2 {
     color: black;
     text-decoration: none;
 }
-#mon-name, #ability-header, #move-header, #tier-header, #index-header {
+#mon-name, #ability-header, #move-header, #tier-header, #index-header, #type-header {
     text-align: center;
 }
 #header-buttons {
@@ -204,14 +204,20 @@ h1, h2 {
     }
 }
 
-.move-list {
+.move-list, .type-list {
     #move-name {
         display: inline-block;
         vertical-align: middle;
         min-width: 13%;
         max-width: 13%;
     }
-    .move-detail {
+    #type-name {
+        display: inline-block;
+        vertical-align: -25%;
+        min-width: 5%;
+        max-width: 5%;
+    }
+    .move-detail, #type-detail {
         display: inline-block;
         vertical-align: -25%;
         min-width: 5%;
@@ -252,11 +258,11 @@ h1, h2 {
         text-decoration: none;
     }
     a:hover {
-        #move-name {
+        #move-name, #type-name {
             color: #666c85;
         }
     }
-    #move-single {
+    #move-single, #type-single {
         border-radius: 0.6em 0.6em 0.6em 0.6em;
         box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
     }

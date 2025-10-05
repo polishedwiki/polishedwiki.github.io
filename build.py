@@ -31,6 +31,8 @@ if update or '-nocache' in sys.argv:
     print(f'- {cache.mod} tiers')
     tiersBase, tierListBase = parser.build_format_tiers(dexMod)
     tiersMod, tierListMod = parser.build_format_tiers(dexMod, cache.mod, tiersBase)
+    print(f'- {cache.mod} types')
+    typeListMod = parser.get_type_list(dexMod)
     print('- dex icons', end='\r')
     iconURLs = cache.icons(dexMod)
     print('- dex sprites', end='\r')
@@ -45,7 +47,8 @@ if update or '-nocache' in sys.argv:
         "movelist": movesListMod['moves'],
         "itemlist": itemListMod['items'],
         "abilitylist": abilityListMod['abilities'],
-        "tierlist": tierListMod
+        "tierlist": tierListMod,
+        "typelist": typeListMod,
     }
     f = open('_cache/search-data.json', 'w')
     f.write(json.dumps(searchData))
@@ -90,6 +93,7 @@ pager.build_moves()
 pager.build_items()
 pager.build_abilities()
 pager.build_tiers()
+pager.build_types()
 pager.build_index()
 pager.build_search()
 pager.copy_assets()
