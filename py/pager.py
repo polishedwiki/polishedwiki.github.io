@@ -97,14 +97,19 @@ def build_search():
                 searchjs['abilitylist'].append([abil, cache.abilityMod[abil]['name']])
         else:
             searchjs[cat] += arr
-    f = open('_site/search-data.json', 'w')
-    f.write(json.dumps(searchjs))
+    f = open('pages/js/search.js')
+    js = f.read()
+    f.close()
+    js = js.replace('$SEARCH_DATA', json.dumps(searchjs))
+    if not os.path.isdir('_site/js'):
+        os.mkdir('_site/js')
+    f = open('_site/js/search.js', 'w')
+    f.write(js)
     f.close()
 
 def copy_assets():
     print('- assets')
     shutil.copytree('pages/style', '_site/style', dirs_exist_ok=True)
-    shutil.copytree('pages/js', '_site/js', dirs_exist_ok=True)
     shutil.copytree('pages/assets', '_site/assets', dirs_exist_ok=True)
 
 

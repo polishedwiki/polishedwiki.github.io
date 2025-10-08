@@ -1,15 +1,5 @@
 const index = document.getElementById("site-index").href;
-var searchData = null;
-
-async function loadSearchData() {
-    try {
-        const response = await fetch(index + 'search-data.json');
-        searchData = await response.json();
-    } catch(e) {
-        console.error(e.message);
-    }
-}
-loadSearchData();
+var searchData = $SEARCH_DATA;
 
 var onSearchItem = false;
 var dropdown = document.getElementById("search-dropdown");
