@@ -158,7 +158,7 @@ def __build_dex_page(mon):
             id = 'only-type'
         elif i == 0:
             id ='first-type'
-        buf += f'<img class="mon-type" id="{id}" src="{__type_img(data['types'][i])}">'
+        buf += f'<a href="../../type/{data['types'][i].lower()}"><img class="mon-type" id="{id}" src="{__type_img(data['types'][i])}"></a>'
     html = html.replace(__comment_tag('MON_TYPE'), buf)
     # tier
     buf = f'<a href="../../tier/{cache.tiersMod[mon].lower()}">Tier: {cache.tiersMod[mon]}</a>'
