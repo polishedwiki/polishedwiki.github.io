@@ -155,7 +155,7 @@ def build_moves(mod='base', moveOverride=False):
         elif in_move and not pp and line.find('pp:') > -1: # pp
             pp_s = line[line.find(':')+1:line.find(',')]
             pp = pp_s.strip()
-        elif in_move and not type and line.find('type:') > -1: # type
+        elif in_move and not type and line.find('type: "') > -1: # type
             type = line[line.find('"')+1:]
             type = type[:type.find('"')]
         elif in_move and not desc and line.find('shortDesc:') > -1:
