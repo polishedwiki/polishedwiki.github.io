@@ -334,15 +334,22 @@ def __build_type_page(type):
         os.mkdir('_site/type')
     if not os.path.isdir(f'_site/type/{nameFlat}'):
         os.mkdir(f'_site/type/{nameFlat}')
-    # type
     html = html_temp.replace('DATA_NAME', type)
+    # mons
     monsWithType = []
     for mon in cache.searchData['dexlist']:
         if type in cache.dexMod[mon]['types']:
             monsWithType.append(mon)
     monsWithType.sort()
-    buf = f'<h2 id="type-header">{type}-type</h2>'
+    buf = f'<h2 id="type-header">{type}-type pokémon</h2>'
     buf += __build_dex_list(monsWithType, '../../')
+    # moves
+    movesWithType = []
+    for move in cache.searchData['movelist']:
+        if type in cache.movesMod[move]['type']:
+            movesWithType.append(move)
+    buf += f'<h2 id="type-header">{type}-type moves</h2>'
+    buf += __build_move_list(movesWithType, '../../')
     html = html.replace(__comment_tag('PAGE_BODY'), buf)
     # insert headers
     html = __insert_header(html)
