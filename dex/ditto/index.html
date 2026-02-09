@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Ditto | Polished Wiki</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="../../style/base.css">
+    <link rel="stylesheet" href="../../style/dex.css">
+    <meta content="Ditto | Polished Wiki" property="og:title" />
+    <meta content="A Pokémon Showdown mod wiki." property="og:description" />
+    <meta content="#0A4566" data-react-helmet="true" name="theme-color" />
+</head>
+<body>
+    <div id="site-header">
+    <a href="../.." id="site-index">
+        <h1>Polished Wiki</h1>
+    </a>
+    <div id="header-buttons">
+        <h2><a href="../../dex/">Dex</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../tier/">Tiers</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../move/">Moves</a><span id="halfpoint-dot">&nbsp;&middot;&nbsp;</span></h2>
+        <h2><a href="../../ability/">Abilities</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../item/">Items</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../type/">Types</a></h2>
+    </div>
+    <div class="search" id="header-search" align="center">
+        <input id="search-bar" type="text" onkeyup="querySearch()" onblur="hideDropdown()" onfocus="showDropdown()" placeholder="Search for pokémon, moves etc...">
+        <div id="search-dropdown"></div>
+    </div>
+</div>
+<script src="../../js/search.js"></script>
+
+    <h1 id="mon-name">Ditto</h1>
+    <div class="mon-header" align="center">
+        <div class="header-body" id="mon-body">
+            <div align="center"><img id="mon-sprite" src="https://raw.githubusercontent.com/CCC200/DH2/master/data/mods/polishedcrystal/sprites/front/ditto.png"></div>
+            <div align="center"><a href="../../type/normal"><img class="mon-type" id="only-type" src="https://play.pokemonshowdown.com/sprites/types/Normal.png"></a></div>
+            <div id="mon-tier" align="center"><a href="../../tier/ou">Tier: OU</a></div>
+        </div>
+        <div class="header-body" id="stat-body">
+            <div class="stat">HP: 78</div><div class="stat-bar" style="width: 24%;"></div><br><div class="stat">Atk: 28</div><div class="stat-bar" style="width: 9%;"></div><br><div class="stat">Def: 48</div><div class="stat-bar" style="width: 15%;"></div><br><div class="stat">SpA: 28</div><div class="stat-bar" style="width: 9%;"></div><br><div class="stat">SpD: 48</div><div class="stat-bar" style="width: 15%;"></div><br><div class="stat">Spe: 108</div><div class="stat-bar" style="width: 34%;"></div><br>
+        </div>
+    </div>
+    <div class="mon-overview" align="center">
+        <div id="overview-body">
+            
+            <h3>Overview</h3>
+            No analysis is available for this species.
+        </div>
+    </div>
+    <h2 id="ability-header">Abilities</h2>
+    <div class="ability-list" align="center"><a href="../../ability/imposter" ><span id="ability-name">Imposter</span>On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it.</a><a href="../../ability/limber" ><span id="ability-name">Limber</span>This Pokemon cannot be paralyzed. Gaining this Ability while paralyzed cures it.</a></div>
+    <h2 id="move-header">Moves</h2>
+    <div class="move-list" align="center"><a href="../../move/transform" id="move-single"><span id="move-name">Transform</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Status.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Normal.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>—</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>10</div><div id="move-desc">Copies target's stats, moves, types, and Ability.</div></a></div>
+</body>
+<footer><small>Last edit 2026-02-09 01:11:47 </small></footer></html>

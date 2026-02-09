@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Magikarp | Polished Wiki</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="../../style/base.css">
+    <link rel="stylesheet" href="../../style/dex.css">
+    <meta content="Magikarp | Polished Wiki" property="og:title" />
+    <meta content="A Pokémon Showdown mod wiki." property="og:description" />
+    <meta content="#0A4566" data-react-helmet="true" name="theme-color" />
+</head>
+<body>
+    <div id="site-header">
+    <a href="../.." id="site-index">
+        <h1>Polished Wiki</h1>
+    </a>
+    <div id="header-buttons">
+        <h2><a href="../../dex/">Dex</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../tier/">Tiers</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../move/">Moves</a><span id="halfpoint-dot">&nbsp;&middot;&nbsp;</span></h2>
+        <h2><a href="../../ability/">Abilities</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../item/">Items</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../type/">Types</a></h2>
+    </div>
+    <div class="search" id="header-search" align="center">
+        <input id="search-bar" type="text" onkeyup="querySearch()" onblur="hideDropdown()" onfocus="showDropdown()" placeholder="Search for pokémon, moves etc...">
+        <div id="search-dropdown"></div>
+    </div>
+</div>
+<script src="../../js/search.js"></script>
+
+    <h1 id="mon-name">Magikarp</h1>
+    <div class="mon-header" align="center">
+        <div class="header-body" id="mon-body">
+            <div align="center"><img id="mon-sprite" src="https://raw.githubusercontent.com/CCC200/DH2/master/data/mods/polishedcrystal/sprites/front/magikarp.png"></div>
+            <div align="center"><a href="../../type/water"><img class="mon-type" id="only-type" src="https://play.pokemonshowdown.com/sprites/types/Water.png"></a></div>
+            <div id="mon-tier" align="center"><a href="../../tier/lc">Tier: LC</a></div>
+        </div>
+        <div class="header-body" id="stat-body">
+            <div class="stat">HP: 20</div><div class="stat-bar" style="width: 6%;"></div><br><div class="stat">Atk: 10</div><div class="stat-bar" style="width: 3%;"></div><br><div class="stat">Def: 55</div><div class="stat-bar" style="width: 17%;"></div><br><div class="stat">SpA: 15</div><div class="stat-bar" style="width: 5%;"></div><br><div class="stat">SpD: 20</div><div class="stat-bar" style="width: 6%;"></div><br><div class="stat">Spe: 80</div><div class="stat-bar" style="width: 25%;"></div><br>
+        </div>
+    </div>
+    <div class="mon-overview" align="center">
+        <div id="overview-body">
+            <h3>Evolutions</h3><div class="evo-link"><img id="evo-icon" src="https://www.smogon.com/forums/media/minisprites/magikarp.png"> <span id="evo-name">Magikarp</span> &#8594; </div><div class="evo-link"><a href="../gyarados"><img id="evo-icon" src="https://www.smogon.com/forums/media/minisprites/gyarados.png"> <span id="evo-name">Gyarados</span></a></div>
+            <h3>Overview</h3>
+            No analysis is available for this species.
+        </div>
+    </div>
+    <h2 id="ability-header">Abilities</h2>
+    <div class="ability-list" align="center"><a href="../../ability/rattled" ><span id="ability-name">Rattled</span>Speed is raised 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or Intimidated.</a><a href="../../ability/swiftswim" ><span id="ability-name">Swift Swim</span>If Rain Dance is active, this Pokemon's Speed is doubled.</a></div>
+    <h2 id="move-header">Moves</h2>
+    <div class="move-list" align="center"><a href="../../move/reversal" ><span id="move-name">Reversal</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Physical.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Fighting.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>—</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>15</div><div id="move-desc">More power the less HP the user has left.</div></a><a href="../../move/splash" ><span id="move-name">Splash</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Status.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Normal.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>—</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>40</div><div id="move-desc">No competitive use.</div></a><a href="../../move/tackle" ><span id="move-name">Tackle</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Physical.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Normal.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>40</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>35</div><div id="move-desc">No additional effect.</div></a></div>
+</body>
+<footer><small>Last edit 2026-02-09 01:11:47 </small></footer></html>

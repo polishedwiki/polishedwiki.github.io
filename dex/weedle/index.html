@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Weedle | Polished Wiki</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="../../style/base.css">
+    <link rel="stylesheet" href="../../style/dex.css">
+    <meta content="Weedle | Polished Wiki" property="og:title" />
+    <meta content="A Pokémon Showdown mod wiki." property="og:description" />
+    <meta content="#0A4566" data-react-helmet="true" name="theme-color" />
+</head>
+<body>
+    <div id="site-header">
+    <a href="../.." id="site-index">
+        <h1>Polished Wiki</h1>
+    </a>
+    <div id="header-buttons">
+        <h2><a href="../../dex/">Dex</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../tier/">Tiers</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../move/">Moves</a><span id="halfpoint-dot">&nbsp;&middot;&nbsp;</span></h2>
+        <h2><a href="../../ability/">Abilities</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../item/">Items</a>&nbsp;&middot;&nbsp;</h2>
+        <h2><a href="../../type/">Types</a></h2>
+    </div>
+    <div class="search" id="header-search" align="center">
+        <input id="search-bar" type="text" onkeyup="querySearch()" onblur="hideDropdown()" onfocus="showDropdown()" placeholder="Search for pokémon, moves etc...">
+        <div id="search-dropdown"></div>
+    </div>
+</div>
+<script src="../../js/search.js"></script>
+
+    <h1 id="mon-name">Weedle</h1>
+    <div class="mon-header" align="center">
+        <div class="header-body" id="mon-body">
+            <div align="center"><img id="mon-sprite" src="https://raw.githubusercontent.com/CCC200/DH2/master/data/mods/polishedcrystal/sprites/front/weedle.png"></div>
+            <div align="center"><a href="../../type/bug"><img class="mon-type" id="first-type" src="https://play.pokemonshowdown.com/sprites/types/Bug.png"></a><a href="../../type/poison"><img class="mon-type" id="" src="https://play.pokemonshowdown.com/sprites/types/Poison.png"></a></div>
+            <div id="mon-tier" align="center"><a href="../../tier/lc">Tier: LC</a></div>
+        </div>
+        <div class="header-body" id="stat-body">
+            <div class="stat">HP: 40</div><div class="stat-bar" style="width: 13%;"></div><br><div class="stat">Atk: 35</div><div class="stat-bar" style="width: 11%;"></div><br><div class="stat">Def: 30</div><div class="stat-bar" style="width: 9%;"></div><br><div class="stat">SpA: 20</div><div class="stat-bar" style="width: 6%;"></div><br><div class="stat">SpD: 20</div><div class="stat-bar" style="width: 6%;"></div><br><div class="stat">Spe: 50</div><div class="stat-bar" style="width: 16%;"></div><br>
+        </div>
+    </div>
+    <div class="mon-overview" align="center">
+        <div id="overview-body">
+            <h3>Evolutions</h3><div class="evo-link"><img id="evo-icon" src="https://www.smogon.com/forums/media/minisprites/weedle.png"> <span id="evo-name">Weedle</span> &#8594; </div><div class="evo-link"><a href="../kakuna"><img id="evo-icon" src="https://www.smogon.com/forums/media/minisprites/kakuna.png"> <span id="evo-name">Kakuna</span></a> &#8594; </div><div class="evo-link"><a href="../beedrill"><img id="evo-icon" src="https://www.smogon.com/forums/media/minisprites/beedrill.png"> <span id="evo-name">Beedrill</span></a></div>
+            <h3>Overview</h3>
+            No analysis is available for this species.
+        </div>
+    </div>
+    <h2 id="ability-header">Abilities</h2>
+    <div class="ability-list" align="center"><a href="../../ability/runaway" ><span id="ability-name">Run Away</span>No competitive use.</a><a href="../../ability/shielddust" ><span id="ability-name">Shield Dust</span>This Pokemon is not affected by the secondary effect of another Pokemon's attack.</a></div>
+    <h2 id="move-header">Moves</h2>
+    <div class="move-list" align="center"><a href="../../move/bugbite" ><span id="move-name">Bug Bite</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Physical.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Bug.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>60</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>20</div><div id="move-desc">User steals and eats the target's Berry.</div></a><a href="../../move/poisonsting" ><span id="move-name">Poison Sting</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Physical.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Poison.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>15</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>100%</div><div class="move-detail" align="center"><h6>PP</h6><br>35</div><div id="move-desc">30% chance to poison the target.</div></a><a href="../../move/stringshot" ><span id="move-name">String Shot</span><div class="move-detail" align="center"><h6>Category</h6><br><img src="https://play.pokemonshowdown.com/sprites/categories/Status.png"></div><div class="move-detail" align="center"><h6>Type</h6><br><img src="https://play.pokemonshowdown.com/sprites/types/Bug.png"></div><div class="move-detail" align="center"><h6>Power</h6><br>—</div><div class="move-detail" align="center"><h6>Accuracy</h6><br>95%</div><div class="move-detail" align="center"><h6>PP</h6><br>40</div><div id="move-desc">Lowers the foe(s) Speed by 2.</div></a></div>
+</body>
+<footer><small>Last edit 2026-02-09 01:11:47 </small></footer></html>

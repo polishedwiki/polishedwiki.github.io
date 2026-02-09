@@ -1,0 +1,392 @@
+/* Style taken from https://codepen.io/jgentes/pen/nrWOmJ */
+
+/* Global elements */
+body {
+    padding: 1em;
+    background: #d2d4dd;
+    background-image: linear-gradient(90deg, transparent 30%, rgba(0, 0, 0, 0.02) 45%, rgba(0, 0, 0, 0.02) 55%, transparent 70%);
+    background-size: 8px 8px;
+    font: 100%/1.5 sans-serif;
+    text-shadow: 0 1px 1px white;
+}
+h1, h2 {
+    user-select: none;
+}
+footer {
+    text-align: center;
+    user-select: none;
+    margin-top: 1%;
+}
+
+/* Base divs */
+#site-header {
+    margin-bottom: 1%;
+}
+#site-header h1 {
+    text-align: center;
+    font-size: 350%;
+    margin-bottom: 0;
+}
+#site-header, a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
+#mon-name, #ability-header, #move-header, #tier-header, #index-header, #type-header {
+    text-align: center;
+}
+#header-buttons {
+    text-align: center;
+    font-size: 110%;
+    h2 {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    a:hover {
+        color: #666c85;
+    }
+    #halfpoint-dot {
+        @media screen and (min-width: 300px) {
+            display: none;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+        }
+    }
+}
+.search {
+    @media screen and (min-width: 300px) {
+        margin-top: 5%;
+    }
+    @media screen and (min-width: 800px) {
+        margin-top: 0.5%;
+    }
+    font-size: 110%;
+    #search-bar {
+        @media screen and (min-width: 300px) {
+            width: 90%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 50%;
+        }
+        font-size: 110%;
+    }
+    #search-dropdown {
+        @media screen and (min-width: 300px) {
+            width: 90%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 50%;
+        }
+        display: none;
+        max-height: 50%;
+        overflow: scroll;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        user-select: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        text-align: left;
+    }
+    a {
+        display: block;
+        padding-left: 1%;
+        text-decoration: none;
+    }
+    a:hover {
+        background-color: #c8d0ec;
+    }
+}
+
+.dex-head {
+    display: flex;
+    justify-content: space-between;
+    #title {
+        margin-left: 7%;
+    }
+    #tier {
+        margin-right: 7%;
+    }
+}
+
+.dex-list {
+    #dex-icon {
+        display: inline-block;
+        margin-left: -15px;
+        width: 40px;
+        height: 30px;
+        @media screen and (min-width: 300px) {
+            vertical-align: top;
+        }
+        @media screen and (min-width: 800px) {
+            vertical-align: middle;
+        }
+    }
+    #dex-name {
+        display: inline-block;
+        vertical-align: -25%;
+        @media screen and (min-width: 300px) {
+            vertical-align: top;
+            margin-top: 2%;
+        }
+        @media screen and (min-width: 800px) {
+            vertical-align: -25%;
+            margin-top: 0;
+            width: 13%;
+        }
+    }
+    .dex-type {
+        display: inline-block;
+        @media screen and (min-width: 300px) {
+            #type-title {
+                display: none;
+            }
+            margin-left: 1%;
+            margin-top: -5.2%;
+        }
+        @media screen and (min-width: 800px) {
+            #type-title {
+                display: inline-block;
+                vertical-align: 15%;
+            }
+            margin-left: 0;
+            margin-top: 0;
+            vertical-align: -30%;
+            width: 10%;
+        }
+    }
+    #dex-abilities {
+        @media screen and (min-width: 300px) {
+            display: block;
+            margin-left: 1.5%;
+            font: bold 85% sans-serif;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+            vertical-align: -25%;
+            width: 35%;
+            margin-left: 0;
+            font: bold 100% sans-serif;
+        }
+    }
+    #first-bst {
+        @media screen and (min-width: 300px) {
+            margin-left: -3%;
+        }
+        @media screen and (min-width: 800px) {
+            margin-left: 0;
+        }
+    }
+    .dex-bst {
+        @media screen and (min-width: 300px) {
+            width: 15%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 3%;
+            vertical-align: -25%;
+        }
+        display: inline-block;
+        text-align: center;
+    }
+    #dex-tier {
+        @media screen and (min-width: 300px) {
+            margin-top: -23%;
+        }
+        @media screen and (min-width: 800px) {
+            margin-top: 1%;
+        }
+        max-width: 12%;
+        float: right;
+    }
+    h6 {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+    }
+    a {
+        position:relative;
+        display: block;
+        padding: 1em;
+        padding-top: 0.25em;
+        border: silver solid 1px;
+        border-top-width: 0;
+        background: white;
+        font: bold 100% sans-serif;
+        width: 85%;
+        text-align: left;
+        user-select: none;
+    }
+    a:first-of-type {
+        border-top-width: 1px;
+        border-radius: 0.6em 0.6em 0 0;
+    }
+    a:last-of-type, p {
+        border-radius: 0 0 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+    a:link, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    a:hover {
+        #dex-name {
+            color: #666c85;
+        }
+    }
+}
+
+.ability-list, .item-list, .tier-list {
+    #ability-name, #item-name, #tier-name {
+        @media screen and (min-width: 300px) {
+            display: block;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+            min-width: 13%;
+            max-width: 13%;
+        }
+    }
+    #ability-desc, #item-desc, #tier-desc {
+        @media screen and (min-width: 300px) {
+            display: block;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+        }
+    }
+    a {
+        position:relative;
+        display: block;
+        padding: 1em;
+        border: silver solid 1px;
+        border-top-width: 0;
+        background: white;
+        font: bold 100% sans-serif;
+        width: 85%;
+        text-align: left;
+        user-select: none;
+    }
+    a:first-of-type {
+        border-top-width: 1px;
+        border-radius: 0.6em 0.6em 0 0;
+    }
+    a:last-of-type {
+        border-radius: 0 0 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+    #ability-single, #item-single, #tier-single {
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+    a:link, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    a:hover {
+        #ability-name, #item-name, #tier-name {
+            color: #666c85;
+        }
+    }
+}
+
+.move-list, .type-list {
+    #move-name {
+        @media screen and (min-width: 300px) {
+            display: block;
+            vertical-align: top;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+            vertical-align: middle;
+            width: 13%;
+        }
+    }
+    #type-name {
+        display: inline-block;
+        vertical-align: -25%;
+        @media screen and (min-width: 300px) {
+            width: 25%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 8%;
+        }
+    }
+    .move-detail {
+        display: inline-block;
+        vertical-align: -25%;
+        @media screen and (min-width: 300px) {
+            width: 20%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 5%;
+        }
+    }
+    #type-detail {
+        display: inline-block;
+        vertical-align: -25%;
+        @media screen and (min-width: 300px) {
+            width: 15%;
+        }
+        @media screen and (min-width: 800px) {
+            width: 3.5%;
+        }
+        @media screen and (min-width: 1920px) {
+            width: 2.5%;
+        }
+    }
+    #move-desc {
+        @media screen and (min-width: 300px) {
+            display: block;
+            font: bold 85% sans-serif;
+            margin-top: 2%;
+        }
+        @media screen and (min-width: 800px) {
+            display: inline-block;
+            font: bold 100% sans-serif;
+            margin-top: 0;
+        }
+        vertical-align: middle;
+    }
+    h6 {
+        display: inline-block;
+        margin: 0;
+        vertical-align: -10%;
+    }
+    a {
+        position:relative;
+        display: block;
+        padding: 1em;
+        padding-top: 0.25em;
+        border: silver solid 1px;
+        border-top-width: 0;
+        background: white;
+        font: bold 100% sans-serif;
+        width: 85%;
+        text-align: left;
+        user-select: none;
+    }
+    a:first-of-type {
+        border-top-width: 1px;
+        border-radius: 0.6em 0.6em 0 0;
+    }
+    a:last-of-type, p {
+        border-radius: 0 0 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+    a:link, a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    a:hover {
+        #move-name, #type-name {
+            color: #666c85;
+        }
+    }
+    #move-single, #type-single {
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    }
+}
