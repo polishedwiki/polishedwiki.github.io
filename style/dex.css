@@ -1,4 +1,9 @@
 .mon-header {
+    @media screen and (min-width: 800px) {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+    }
     .header-body {
         position:relative;
         padding: 1em;
@@ -22,6 +27,7 @@
             display: inline-block;
             width: 15%;
             margin-bottom: 0;
+            margin-right: 0.25em;
         }
     }
     #stat-body {
@@ -58,13 +64,13 @@
     }
     .stat {
         display: inline-block;
-        margin-top: 0.65em;
+        margin-top: 1em;
         @media screen and (min-width: 300px) {
             width: 25%;
             text-align: left;
         }
         @media screen and (min-width: 800px) {
-            width: 15%;
+            width: 18%;
             text-align: center;
         }
     }
