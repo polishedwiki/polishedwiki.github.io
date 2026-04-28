@@ -143,4 +143,20 @@
     a:hover {
         color: #666c85;
     }
+    .overview-section {
+        font: 100% sans-serif;
+        margin-top: 0;
+        h3, h5 {
+            margin-top: 0;
+        }
+    }
+    .mon-set {
+        outline: 2px solid grey;
+        outline-style: groove;
+        user-select: all;
+        padding: 0.5em;
+        margin-top: -1em;
+        margin-bottom: -1em;
+        font: 90% sans-serif;
+    }
 }
