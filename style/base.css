@@ -187,19 +187,14 @@ footer {
         @media screen and (min-width: 800px) {
             width: 3%;
             vertical-align: -25%;
+            margin-bottom: 0.5em;
         }
         display: inline-block;
         text-align: center;
     }
     #dex-tier {
-        @media screen and (min-width: 300px) {
-            margin-top: -23%;
-        }
-        @media screen and (min-width: 800px) {
-            margin-top: 1%;
-        }
+        margin-left: auto;
         max-width: 12%;
-        float: right;
     }
     h6 {
         display: inline-block;
@@ -208,8 +203,9 @@ footer {
     }
     a {
         position:relative;
-        display: block;
-        padding: 1em;
+        display: flex;
+        align-items: center;
+        padding-inline: 1.5em;
         padding-top: 0.25em;
         border: silver solid 1px;
         border-top-width: 0;
@@ -390,3 +386,81 @@ footer {
         box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
     }
 }
+
+/* Sorting Controls */
+.dex-controls-container {
+    background: white;
+    padding: 1em;
+    border-radius: 0.6em;
+    margin: 1em auto;
+    box-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+    border: silver solid 1px;
+    width: fit-content;
+}
+.controls-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: flex-end;
+    justify-content: center;
+}
+.control-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    align-items: center;
+}
+.control-section label {
+    font: bold 85% sans-serif;
+    color: black;
+    text-shadow: none;
+}
+.input-group {
+    display: flex;
+    border: silver solid 1px;
+    border-radius: 0.6em;
+    overflow: hidden;
+    background: white;
+}
+.input-group select, #dex-search {
+    padding: 0.4em;
+    border: none;
+    outline: none;
+    background: white;
+    font-family: sans-serif;
+}
+#dex-search {
+    min-width: 120px;
+    border: silver solid 1px;
+    border-radius: 0.6em;
+    padding: 0.4em;
+}
+.dir-toggle {
+    background: #f1f1f1;
+    border: none;
+    border-left: silver solid 1px;
+    padding: 0 0.6em;
+    cursor: pointer;
+    font: bold 70% sans-serif;
+    min-width: 45px;
+    font-family: sans-serif;
+}
+.dir-toggle:hover {
+    background: #c8d0ec;
+}
+#apply-filters {
+    background: #a0a0a0;
+    color: white;
+    border: none;
+    padding: 0.5em 1.2em;
+    border-radius: 0.6em;
+    cursor: pointer;
+    font-weight: bold;
+    height: 2.2em;
+    font-family: sans-serif;
+    text-shadow: none;
+}
+#apply-filters:hover {
+    background: #808080;
+}
+
